@@ -9,6 +9,7 @@ import MainLayout from "./layouts/MainLayout";
 import JobsPage from "./pages/JobsPage";
 import NotFound from "./pages/NotFound";
 import JobPage, { jobLoader } from "./pages/JobPage";
+import AddJob from "./pages/AddJob";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -35,7 +36,7 @@ const router = createBrowserRouter(
     <Route
       path="/add-job"
       element={
-          <JobsPage />
+          <AddJob />
       }
     />
     <Route
