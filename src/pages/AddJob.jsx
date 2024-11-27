@@ -1,21 +1,39 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
-const AddJob = () => {
+const AddJob = ({ addJobSubmit }) => {
     const [title, setTitle] = useState('');
-    const [type, setType] = useState('')
+    const [type, setType] = useState('Full-Time')
     const [location, setLocation] = useState('')
     const [description, setDescription] = useState('')
-    const [salary, setSalary] = useState('')
+    const [salary, setSalary] = useState('Under $50K')
     const [companyName, setCompanyName] = useState('')
     const [companyDescription, setCompanyDescription] = useState('')
-    const [comapnyEmail, setComapnyEmail] = useState('')
+    const [comapanyEmail, setComapanyEmail] = useState('')
     const [contactPhone, setContactPhone] = useState('')
+
+    const navigate = useNavigate();
 
     const submitForm = (e) => {
       e.preventDefault();
 
-      console.log(description);
+      const newJob = {
+        title,
+        type,
+        location, 
+        description,
+        salary,
+        comapny: {
+          name: companyName,
+          description: companyDescription,
+          comapanyEmail,
+          contactPhone
+        }
+      }
       
+      addJobSubmit(newJob);
+
+      return navigate('/jobs');
     }
 
   return (
@@ -167,8 +185,8 @@ const AddJob = () => {
                 className="border rounded w-full py-2 px-3"
                 placeholder="Email address for applicants"
                 required
-                value={comapnyEmail}
-                onChange={(e)=>setComapnyEmail(e.target.value)}
+                value={comapanyEmail}
+                onChange={(e)=>setComapanyEmail(e.target.value)}
               />
             </div>
             <div className="mb-4">
